@@ -2,6 +2,12 @@ const express = require('express');
 
 var app = express();
 
+// absolute path to the folder 
+// __dirname = stores path to  server folder
+
+//set the root path for static documents.
+app.use(express.static(__dirname + '/public'));
+
 app.get('/', (req, res) => {
     //res.send('Hello Express!');
     res.send({
