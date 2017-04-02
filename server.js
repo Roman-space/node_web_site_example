@@ -12,11 +12,6 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
 
-    // absolute path to the folder 
-    // __dirname = stores path to  server folder
-
-    //set the root path for static documents.
-app.use(express.static(__dirname + '/public'));
 
     //middleware = add some functionality to express.
     // -- next() - to show that middleware is done.
@@ -42,8 +37,14 @@ app.use((req, res, next) => {
         text: 'We\'ll be right back',
         status: 'currently being updated'
     });
+    // next() - skip - so everything stopped when render mid.hbs.
 });
 
+    // absolute path to the folder 
+    // __dirname = stores path to  server folder
+
+    //set the root path for static documents.
+app.use(express.static(__dirname + '/public'));
     // static data - for cach to calc in ope place use in many
 hbs.registerHelper('getCurrentYear', () => {
     return new Date().getFullYear();

@@ -15,3 +15,14 @@ hbs.registerPartials(__dirname + '/views/partials');
 ask nodemon to follow different extentions
 nodemon server.js -e js, hbs
                     xtentions
+
+createKey
+ssh-keygen -t rsa -b 4096 -C 'rmrf16w@gmail.com'  - how to create key;
+после генерации ключа 
+eval "$(ssh-agent -s)"
+    Agent pid 5591
+
+ssh-add ~/.ssh/id_rsa
+ -- Identity added .....id_rsa
+
+
