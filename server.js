@@ -1,6 +1,6 @@
 const express = require('express');
 const hbs = require('hbs');
-
+const fs = require('fs');
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -18,12 +18,37 @@ app.set('view engine', 'hbs');
     //set the root path for static documents.
 app.use(express.static(__dirname + '/public'));
 
-// static data - for cach to calc in ope place use in many
+    //middleware = add some functionality to express.
+    // -- next() - to show that middleware is done.
+    //             если не будет next - infinity load.
+app.use((req, res, next) => {
+
+    var now = new Date().toString();
+    var log  = `${now}: ${req.method} ${req.url}`;
+
+    fs.appendFile('server.log', log + '\n', (err) => {
+        if (err) {
+            console.log('Unable to append to server.log');
+        }
+    });
+    console.log(log);
+
+    next();
+});
+
+// ex = p5l6 - middleware
+app.use((req, res, next) => {
+    res.render('mid.hbs', {
+        text: 'Updating ...' 
+    });
+});
+
+    // static data - for cach to calc in ope place use in many
 hbs.registerHelper('getCurrentYear', () => {
     return new Date().getFullYear();
 });
 
-// function with param = {{< screamIt Some message}}
+    // function with param = {{> screamIt Some message}}
 hbs.registerHelper('screamIt', (text) => {
     return text.toUpperCase();
 });
