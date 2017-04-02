@@ -39,7 +39,8 @@ app.use((req, res, next) => {
 // ex = p5l6 - middleware
 app.use((req, res, next) => {
     res.render('mid.hbs', {
-        text: 'Updating ...' 
+        text: 'We\'ll be right back',
+        status: 'currently being updated'
     });
 });
 
