@@ -2,3 +2,16 @@ p5
 
 l4
 handlebarsjs.com == hbs
+
+l5
+work with hbs = {{data}}
+
+to work with partial data look file
+get partial data => {{< footer}}
+
+hbs.registerPartials(__dirname + '/views/partials');
+
+
+ask nodemon to follow different extentions
+nodemon server.js -e js, hbs
+                    xtentions

@@ -3,6 +3,7 @@ const hbs = require('hbs');
 
 var app = express();
 
+hbs.registerPartials(__dirname + '/views/partials');
     // it is how to enable htb with express 
     // for templates - default dir views = time to create
     // file must have extentions  hbs
@@ -10,11 +11,22 @@ var app = express();
     //  --- response.render('about.hbs || file_name');
 app.set('view engine', 'hbs');
 
+
     // absolute path to the folder 
     // __dirname = stores path to  server folder
 
     //set the root path for static documents.
 app.use(express.static(__dirname + '/public'));
+
+// static data - for cach to calc in ope place use in many
+hbs.registerHelper('getCurrentYear', () => {
+    return new Date().getFullYear();
+});
+
+// function with param = {{< screamIt Some message}}
+hbs.registerHelper('screamIt', (text) => {
+    return text.toUpperCase();
+});
 
 app.get('/', (req, res) => {
     //res.send('Hello Express!');
@@ -28,7 +40,6 @@ app.get('/', (req, res) => {
     */
     res.render('w.hbs', {
         pageTitle: 'About Page',
-        currentYear: new Date().getFullYear(),
         welcomeMessage: 'Hi, live is really great'
     });
 });

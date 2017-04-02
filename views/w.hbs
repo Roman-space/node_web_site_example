@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<head>
-    <title>asd</title>
-</head>
-<body>
-    <h1>{{pageTitle}}</h1>
+{{> head}}
+{{> header}}
+
+
     <p>{{welcomeMessage}}</p>
+    <p>{{screamIt welcomeMessage}}</p>
     <p>Some text</p>
-    <footer>
-        <p>Copyright {{currentYear}}</p>
-    </footer>
+    {{> footer}}
 </body>
 </html>
